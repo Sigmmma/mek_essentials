@@ -1,0 +1,47 @@
+; These commands will build the structure_scenario_bsp tag
+; of a scenario, compile its bitmaps(if you uncomment it),
+; recalculate breakable-surfaces and lens flare markers,
+; run radiosity on it, build it to a map, and(if you choose
+; to uncomment it) run haloce.exe in devmode for testing.
+; Set <scnr_dir> to the folder containing the scenario.
+# set	scnr_dir		"SET_THIS_TO_THE_SCENARIO_DIRECTORY"
+# set	scnr_name		SET_THIS_TO_THE_NAME_OF_THE_SCENARIO
+# set	bsp_name		SET_THIS_TO_THE_NAME_OF_THE_BSP
+; uncomment these to rebuild the tutorial map as an example
+;# set	scnr_dir		"levels\test\tutorial"
+;# set	scnr_name		tutorial
+;# set	bsp_name		tutorial
+# set	rad_qual		1
+# set	rad_stop		0.000001
+
+
+; uncomment this line if you need to compile the maps bitmaps
+;bitmaps		<scnr_dir>\bitmaps
+
+
+; use #k here to keep the windows open and #w down below to
+; wait on all the bsps to finish compiling. This way you can
+; decide whether to let it continue on to running radiosity.
+# k
+structure		<scnr_dir> <bsp_name>
+; copy+paste+edit ^^^ for however many bsp's you're compiling
+
+; recalculate these since the bsp was recompiled
+structure-breakable-surfaces <scnr_dir>\<bsp_name>
+structure-lens-flares <scnr_dir>\<bsp_name>
+
+
+; lightmaps can just close when they're done, so use #c
+# c
+lightmaps <scnr_dir>\<scnr_name> <bsp_name>	<rad_qual> <rad_stop>
+; copy+paste+edit ^^^ for however many bsp's you're lighting
+
+
+
+# k
+build-cache-file			<scnr_dir>\<scnr_name>
+; wait for the map to finish compiling before running haloce
+# w
+; uncomment the below line to run halo in devmode with
+; console enabled once the map is finished compiling.
+;# run "haloce.exe"			-console -devmode
