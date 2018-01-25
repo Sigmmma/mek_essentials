@@ -1,0 +1,14 @@
+; These commands will build the bitmaps, sounds, gbxmodel,
+; physics, model_collision_geometry, and model_animations
+; tags for the object whose data-files are located in the
+; <object_dir> folder. Set object_dir to whatever you need.
+# k
+# set	object_dir		"SET_THIS_TO_THE_OBJECTS_DIRECTORY"
+;# set	object_dir		vehicles\sophia
+
+bitmaps			<object_dir>\bitmaps
+physics			<object_dir>
+collision-geometry			<object_dir>
+animations			<object_dir>
+model			<object_dir>
+sounds			<object_dir>\sounds ogg 1
