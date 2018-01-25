@@ -33,15 +33,15 @@ setup(
     license='MIT',
     executables=[
         Executable(os.path.join(HEK_POOL_DIR, 'run.py'),
-            base='Win32GUI', targetName='pool.exe',
+            targetName='Pool.exe', base='Win32GUI',
             icon=os.path.join(curr_dir, 'rsrc', 'icons', 'pool.ico')
             ),
         Executable(os.path.join(REFINERY_DIR, 'run.py'),
-            targetName='refinery.exe',
+            targetName='Refinery.exe',
             icon=os.path.join(curr_dir, 'rsrc', 'icons', 'refinery.ico')
             ),
         Executable(os.path.join(MOZZARILLA_DIR, 'run.py'),
-            base='Win32GUI', targetName='mozzarilla.exe',
+            targetName='Mozzarilla.exe', base='Win32GUI',
             icon=os.path.join(curr_dir, 'rsrc', 'icons', 'mozzarilla.ico')
             ),
         ],
