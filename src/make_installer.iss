@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MEK Essentials"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "Moses of Egypt"
 #define MyAppURL "https://bitbucket.org/Moses_of_Egypt/"
 #define MekeDir "D:\Applications\My Repos\meke\"
@@ -14,7 +14,7 @@
 AppId={{145BFD54-DAD9-45EC-9193-466BFA3A6038}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
+VersionInfoVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
@@ -24,6 +24,7 @@ DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile=D:\Applications\My Repos\meke\src\rsrc\LICENSE.TXT
 InfoBeforeFile=D:\Applications\My Repos\meke\src\rsrc\readme.txt
+OutputDir={#MekeDir}
 OutputBaseFilename=MEK Essentials Setup
 Compression=lzma/ultra
 SolidCompression=yes   
@@ -35,27 +36,45 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "{#MekeDir}exe.win-amd64-3.5\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
+Name: "{group}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"; \
+    AfterInstall: SetElevationBit('{group}\Mozzarilla.lnk')
+Name: "{group}\Refinery"; Filename: "{app}\Refinery.exe"; \
+    AfterInstall: SetElevationBit('{group}\Refinery.lnk')
+Name: "{group}\Pool"; Filename: "{app}\Pool.exe"; \
+    AfterInstall: SetElevationBit('{group}\Pool.lnk')      
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-Name: "{group}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"
-Name: "{group}\Refinery"; Filename: "{app}\Refinery.exe"
-Name: "{group}\Pool"; Filename: "{app}\Pool.exe"          
 Name: "{group}\Readmes\mozzarilla_readme"; Filename: "{app}\readmes\mozzarilla_readme.txt"
 Name: "{group}\Readmes\refinery_readme"; Filename: "{app}\readmes\refinery_readme.txt"       
 Name: "{group}\Readmes\pool_readme"; Filename: "{app}\readmes\pool_readme.txt"  
-Name: "{userdesktop}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"
-Name: "{userdesktop}\Refinery"; Filename: "{app}\Refinery.exe"
-Name: "{userdesktop}\Pool"; Filename: "{app}\Pool.exe"
 
-[Registry]
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; \
-    ValueType: String; ValueName: "{userdesktop}\Mozzarilla.exe"; ValueData: "RUNASADMIN"; \
-    Flags: uninsdeletekeyifempty uninsdeletevalue; MinVersion: 0,5.0
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; \
-    ValueType: String; ValueName: "{userdesktop}\Refinery.exe"; ValueData: "RUNASADMIN"; \
-    Flags: uninsdeletekeyifempty uninsdeletevalue; MinVersion: 0,5.0
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; \
-    ValueType: String; ValueName: "{userdesktop}\Pool.exe"; ValueData: "RUNASADMIN"; \
-    Flags: uninsdeletekeyifempty uninsdeletevalue; MinVersion: 0,5.0
+Name: "{userdesktop}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Mozzarilla.lnk')
+Name: "{userdesktop}\Refinery"; Filename: "{app}\Refinery.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Refinery.lnk')
+Name: "{userdesktop}\Pool"; Filename: "{app}\Pool.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Pool.lnk')
+
+[Code]
+
+procedure SetElevationBit(Filename: string);
+var
+  Buffer: string;
+  Stream: TStream;
+begin
+  Filename := ExpandConstant(Filename);
+  Log('Setting elevation bit for ' + Filename);
+        
+  try
+    Stream := TFileStream.Create(FileName, fmOpenReadWrite);
+    Stream.Seek(21, soFromBeginning);
+    SetLength(Buffer, 1);
+    Stream.ReadBuffer(Buffer, 1);
+    Buffer[1] := Chr(Ord(Buffer[1]) or $20);
+    Stream.Seek(-1, soFromCurrent);
+    Stream.WriteBuffer(Buffer, 1);
+  finally
+    Stream.Free;
+  end;
+end;

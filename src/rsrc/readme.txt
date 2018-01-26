@@ -1,4 +1,4 @@
-The MEK(Mo's Editing Kit) Essentials is a set of three tools designed for editing Halo Custom Editon on PC. These tools are Pool, Mozzarilla, and Refinery, and they supplement the editing programs provided by the HEK(Halo Editing Kit).
+The MEK(Mo's Editing Kit) Essentials is a set of tools designed for editing Halo Custom Editon on PC. These tools are Pool, Mozzarilla, and Refinery, and they supplement the editing programs provided by the HEK(Halo Editing Kit).
 
 More detailed information on each program can be found in their readme's. You can find these readme's through the start menu.
 
