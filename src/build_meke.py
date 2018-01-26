@@ -57,7 +57,7 @@ setup(
             os.path.join(curr_dir, 'rsrc', 'cmd_lists'),
             os.path.join(curr_dir, 'rsrc', 'READMES'),
             os.path.join(curr_dir, 'rsrc', 'readme.txt'),
-            os.path.join(curr_dir, 'rsrc', 'DO NOT RENAME OR MOVE THESE FILES'),
+            os.path.join(curr_dir, 'rsrc', 'DO NOT RENAME OR MOVE THESE FILES.txt'),
             ]
         ))
     )

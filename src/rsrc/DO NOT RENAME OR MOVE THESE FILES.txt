@@ -1,0 +1,19 @@
+If you move or rename the below files, the programs in this folder will likely not work. You can move this entire folder, just do not move anything listed below out of it or rename it.
+
+[FOLDERS]
+icons
+lib
+tcl
+tk
+
+
+[FILES]
+Mozzarilla.exe
+Refinery.exe
+Pool.exe
+
+ogg_v1.1.2_dll_fix.zip
+python35.dll
+tcl86t.dll
+tk86t.dll
+VCRUNTIME140.dll
