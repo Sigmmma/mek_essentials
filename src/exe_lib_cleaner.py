@@ -10,8 +10,11 @@ if len(sys.argv) > 1:
     op_dir = sys.argv[1]
 
 try:
-    for root, dirs, files in os.walk(os.path.abspath(op_dir)):
+    op_dir = os.path.abspath(op_dir)
+    for root, dirs, files in os.walk(op_dir):
         for folder in dirs:
+            if os.path.join(root, "") == os.path.join(op_dir, ""):
+                break
             if folder.lower() in (
                     ".hg", ".vs", "styles", "docs", "test_files", "x64",
                     "arbytmap_ext", "bitmap_io_ext", "dds_defs_ext",
@@ -23,7 +26,10 @@ try:
                 continue
 
             if filename.lower() in ("readme.md", "readme.rst", "readme.txt",
-                                    "todo.txt", ".hgignore", "license.txt"):
+                                    "todo.txt", ".recent.txt", ".hgignore",
+                                    "license.txt", "pool_colors.txt",
+                                    "pool_actions.txt", "refinery.cfg",
+                                    "hek_pool.cfg", "mozzarilla.cfg"):
                 os.remove(os.path.join(root, filename))
 
             if os.path.splitext(filename)[-1] in (

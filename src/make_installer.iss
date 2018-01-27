@@ -22,6 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
+SetupIconFile="{#MekeDir}src\rsrc\icons\meke.ico"
 LicenseFile=D:\Applications\My Repos\meke\src\rsrc\LICENSE.TXT
 InfoBeforeFile=D:\Applications\My Repos\meke\src\rsrc\readme.txt
 OutputDir={#MekeDir}
