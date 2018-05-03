@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MEK Essentials"
-#define MyAppVersion "1.0.0.7"
+#define MyAppVersion "1.0.0.8"
 #define MyAppPublisher "Moses of Egypt"
 #define MyAppURL "https://bitbucket.org/Moses_of_Egypt/"
 #define MekeDir "F:\My Files\Applications\My Repos\meke\"
@@ -35,8 +35,9 @@ ArchitecturesInstallIn64BitMode=x64
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
-[Files]
-Source: "{#MekeDir}exe.win-amd64-3.5\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+[Files]   
+Source: "{#MekeDir}exe.win-amd64-3.5\cmd_lists\*"; DestDir: "{app}\cmd_lists"; Flags: uninsneveruninstall 
+Source: "{#MekeDir}exe.win-amd64-3.5\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs 
 
 [Icons]
 Name: "{group}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"; \
