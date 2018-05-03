@@ -27,9 +27,10 @@ try:
 
             if filename.lower() in ("readme.md", "readme.rst", "readme.txt",
                                     "todo.txt", ".recent.txt", ".hgignore",
-                                    "license.txt", "pool_colors.txt",
-                                    "pool_actions.txt", "refinery.cfg",
-                                    "hek_pool.cfg", "mozzarilla.cfg"):
+                                    "license.txt",
+                                    "pool_colors.txt", "pool_actions.txt",
+                                    "refinery.cfg", "mozzarilla.cfg",
+                                    "binilla.cfg", "hek_pool.cfg"):
                 os.remove(os.path.join(root, filename))
 
             if os.path.splitext(filename)[-1] in (
