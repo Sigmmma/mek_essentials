@@ -51,12 +51,15 @@ Name: "{group}\Readmes\mozzarilla_readme"; Filename: "{app}\readmes\mozzarilla_r
 Name: "{group}\Readmes\refinery_readme"; Filename: "{app}\readmes\refinery_readme.txt"       
 Name: "{group}\Readmes\pool_readme"; Filename: "{app}\readmes\pool_readme.txt"  
 
-Name: "{userdesktop}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Mozzarilla.lnk')
-Name: "{userdesktop}\Refinery"; Filename: "{app}\Refinery.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Refinery.lnk')
-Name: "{userdesktop}\Pool"; Filename: "{app}\Pool.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Pool.lnk')
+Name: "{userdesktop}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe";
+Name: "{userdesktop}\Refinery"; Filename: "{app}\Refinery.exe";
+Name: "{userdesktop}\Pool"; Filename: "{app}\Pool.exe";
+Name: "{userdesktop}\Mozzarilla(Run as Admin)"; Filename: "{app}\Mozzarilla.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Mozzarilla(Run as Admin).lnk')
+Name: "{userdesktop}\Refinery(Run as Admin)"; Filename: "{app}\Refinery.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Refinery(Run as Admin).lnk')
+Name: "{userdesktop}\Pool(Run as Admin)"; Filename: "{app}\Pool.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Pool(Run as Admin).lnk')
 
 [Code]
 
