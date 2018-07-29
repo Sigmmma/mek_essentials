@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MEK Essentials"
-#define MyAppVersion "1.0.1.4"
+#define MyAppVersion "1.0.1.6"
 #define MyAppPublisher "Moses of Egypt"
 #define MyAppURL "https://bitbucket.org/Moses_of_Egypt/"
 #define MekeDir "F:\My Files\Applications\My Repos\meke\"
@@ -54,12 +54,12 @@ Name: "{group}\Readmes\pool_readme"; Filename: "{app}\readmes\pool_readme.txt"
 Name: "{userdesktop}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe";
 Name: "{userdesktop}\Refinery"; Filename: "{app}\Refinery.exe";
 Name: "{userdesktop}\Pool"; Filename: "{app}\Pool.exe";
-Name: "{userdesktop}\Mozzarilla(Run as Admin)"; Filename: "{app}\Mozzarilla.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Mozzarilla(Run as Admin).lnk')
-Name: "{userdesktop}\Refinery(Run as Admin)"; Filename: "{app}\Refinery.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Refinery(Run as Admin).lnk')
-Name: "{userdesktop}\Pool(Run as Admin)"; Filename: "{app}\Pool.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Pool(Run as Admin).lnk')
+Name: "{userdesktop}\Mozzarilla (Run as Admin)"; Filename: "{app}\Mozzarilla.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Mozzarilla (Run as Admin).lnk')
+Name: "{userdesktop}\Refinery (Run as Admin)"; Filename: "{app}\Refinery.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Refinery (Run as Admin).lnk')
+Name: "{userdesktop}\Pool (Run as Admin)"; Filename: "{app}\Pool.exe"; \
+    AfterInstall: SetElevationBit('{userdesktop}\Pool (Run as Admin).lnk')
 
 [Code]
 
