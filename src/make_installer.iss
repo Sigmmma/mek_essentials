@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MEK Essentials"
-#define MyAppVersion "1.0.3.0"
+#define MyAppVersion "1.0.3.2"
 #define MyAppPublisher "Moses of Egypt"
 #define MyAppURL "https://bitbucket.org/Moses_of_Egypt/"
 #define MekeDir "F:\My Files\Applications\My Repos\meke\"
@@ -27,7 +27,7 @@ LicenseFile="{#MekeDir}src\rsrc\LICENSE.TXT"
 InfoBeforeFile="{#MekeDir}src\rsrc\readme.txt"
 OutputDir={#MekeDir}
 OutputBaseFilename=MEK Essentials Setup
-Compression=lzma/ultra
+Compression=lzma2/ultra
 SolidCompression=yes   
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64

@@ -1,14 +1,6 @@
 #!/usr/bin/env python
 from os.path import dirname, join
 from cx_Freeze import setup, Executable
-'''
-from reclaimer.h2.defs import *
-from reclaimer.hek.defs import *
-from reclaimer.misc.defs import *
-from reclaimer.os_hek.defs import *
-from reclaimer.os_v3_hek.defs import *
-from reclaimer.os_v4_hek.defs import *
-'''
 import os
 PYTHON_INSTALL_DIR = os.path.dirname(os.path.dirname(os.__file__))
 SITE_PACKAGES_DIR = os.path.join(PYTHON_INSTALL_DIR, 'lib', 'site-packages')
