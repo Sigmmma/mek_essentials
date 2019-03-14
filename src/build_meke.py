@@ -45,7 +45,7 @@ setup(
             os.path.join(PYTHON_INSTALL_DIR, 'DLLs', 'tcl86t.dll'),
             os.path.join(HEK_POOL_DIR, 'ogg_v1.1.2_dll_fix.zip'),
             os.path.join(MOZZARILLA_DIR, 'styles'),
-            os.path.join(curr_dir, 'rsrc', 'scripts'),
+            os.path.join(curr_dir, 'rsrc', '3ds_max_scripts'),
             os.path.join(curr_dir, 'rsrc', 'icons'),
             os.path.join(curr_dir, 'rsrc', 'cmd_lists'),
             os.path.join(curr_dir, 'rsrc', 'READMES'),
