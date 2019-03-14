@@ -22,6 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
+DisableDirPage=no
 SetupIconFile="{#MekeDir}src\rsrc\icons\meke.ico"
 LicenseFile="{#MekeDir}src\rsrc\LICENSE.TXT"
 InfoBeforeFile="{#MekeDir}src\rsrc\readme.txt"
