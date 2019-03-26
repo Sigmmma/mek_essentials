@@ -25,16 +25,17 @@ try:
             if cur_dir in os.path.join(root, filename):
                 continue
 
-            if filename.lower() in ("readme.md", "readme.rst", "readme.txt",
-                                    "todo.txt", ".recent.txt", ".hgignore",
-                                    "license.txt",
+            if filename.lower() in ("todo.txt", ".recent.txt", ".hgignore",
                                     "pool_colors.txt", "pool_actions.txt",
                                     "refinery.cfg", "mozzarilla.cfg",
                                     "binilla.cfg", "hek_pool.cfg"):
                 os.remove(os.path.join(root, filename))
 
-            if os.path.splitext(filename)[-1] in (
-                    ".log", ".sln", ".db", ".user", ".filters", ".vcxproj"):
+            name = os.path.splitext(filename)[0].lower()
+            ext = os.path.splitext(filename)[-1].lower()
+            if ((ext != ".txt" or name not in ("readme", "license")) and
+                    ext in (".log", ".sln", ".db",
+                            ".user", ".filters", ".vcxproj")):
                 os.remove(os.path.join(root, filename))
 
             new_filename = filename

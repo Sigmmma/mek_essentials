@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MEK Essentials"
-#define MyAppVersion "1.0.4.0"
+#define MyAppVersion "1.0.4.3"
 #define MyAppPublisher "Moses of Egypt"
 #define MyAppURL "https://bitbucket.org/Moses_of_Egypt/"
 #define MekeDir "F:\My Files\Applications\My Repos\meke\"
@@ -22,6 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
+DisableDirPage=no
 SetupIconFile="{#MekeDir}src\rsrc\icons\meke.ico"
 LicenseFile="{#MekeDir}src\rsrc\LICENSE.TXT"
 InfoBeforeFile="{#MekeDir}src\rsrc\readme.txt"
