@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MEK Essentials"
-#define MyAppVersion "1.0.4.3"
+#define MyAppVersion "1.0.5.1"
 #define MyAppPublisher "Moses of Egypt"
 #define MyAppURL "https://bitbucket.org/Moses_of_Egypt/"
 #define MekeDir "F:\My Files\Applications\My Repos\meke\"
@@ -10,28 +10,29 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+; (To generate a new GUID, click Tools | Generate GUID inside the IDE.) 
+AllowNoIcons=yes
 AppId={{145BFD54-DAD9-45EC-9193-466BFA3A6038}
-AppName={#MyAppName}
-AppVersion={#MyAppVersion}
-VersionInfoVersion={#MyAppVersion}
+AppName={#MyAppName}        
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
+AppVersion={#MyAppVersion}      
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64   
+Compression=lzma2/ultra
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-AllowNoIcons=yes
-DisableDirPage=no
-SetupIconFile="{#MekeDir}src\rsrc\icons\meke.ico"
-LicenseFile="{#MekeDir}src\rsrc\LICENSE.TXT"
+DisableDirPage=no           
+DisableProgramGroupPage=no
 InfoBeforeFile="{#MekeDir}src\rsrc\readme.txt"
-OutputDir={#MekeDir}
-OutputBaseFilename=MEK Essentials Setup
-Compression=lzma2/ultra
+LicenseFile="{#MekeDir}src\rsrc\LICENSE.TXT"   
+OutputBaseFilename=MEK Essentials Setup   
+OutputDir={#MekeDir} 
+SetupIconFile="{#MekeDir}src\rsrc\icons\meke.ico"
 SolidCompression=yes   
-ArchitecturesAllowed=x64
-ArchitecturesInstallIn64BitMode=x64
+VersionInfoVersion={#MyAppVersion}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -39,6 +40,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Files]   
 Source: "{#MekeDir}exe.win-amd64-3.5\cmd_lists\*"; DestDir: "{app}\cmd_lists"; Flags: uninsneveruninstall 
 Source: "{#MekeDir}exe.win-amd64-3.5\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs 
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked 
 
 [Icons]
 Name: "{group}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"; \
@@ -52,16 +56,16 @@ Name: "{group}\Readmes\mozzarilla_readme"; Filename: "{app}\readmes\mozzarilla_r
 Name: "{group}\Readmes\refinery_readme"; Filename: "{app}\readmes\refinery_readme.txt"       
 Name: "{group}\Readmes\pool_readme"; Filename: "{app}\readmes\pool_readme.txt"  
 
-Name: "{userdesktop}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe";
-Name: "{userdesktop}\Refinery"; Filename: "{app}\Refinery.exe";
-Name: "{userdesktop}\Pool"; Filename: "{app}\Pool.exe";
-Name: "{userdesktop}\Mozzarilla (Run as Admin)"; Filename: "{app}\Mozzarilla.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Mozzarilla (Run as Admin).lnk')
-Name: "{userdesktop}\Refinery (Run as Admin)"; Filename: "{app}\Refinery.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Refinery (Run as Admin).lnk')
-Name: "{userdesktop}\Pool (Run as Admin)"; Filename: "{app}\Pool.exe"; \
-    AfterInstall: SetElevationBit('{userdesktop}\Pool (Run as Admin).lnk')
-
+Name: "{userdesktop}\Mozzarilla"; Filename: "{app}\Mozzarilla.exe"; Tasks: desktopicon 
+Name: "{userdesktop}\Refinery"; Filename: "{app}\Refinery.exe"; Tasks: desktopicon 
+Name: "{userdesktop}\Pool"; Filename: "{app}\Pool.exe"; Tasks: desktopicon 
+; Removing these run-as-admin shortcuts since the MEK doesn't need admin to read from restricted folders anymore
+;Name: "{userdesktop}\Mozzarilla (Run as Admin)"; Filename: "{app}\Mozzarilla.exe"; \
+;    AfterInstall: SetElevationBit('{userdesktop}\Mozzarilla (Run as Admin).lnk')
+;Name: "{userdesktop}\Refinery (Run as Admin)"; Filename: "{app}\Refinery.exe"; \
+;    AfterInstall: SetElevationBit('{userdesktop}\Refinery (Run as Admin).lnk')
+;Name: "{userdesktop}\Pool (Run as Admin)"; Filename: "{app}\Pool.exe"; \
+;    AfterInstall: SetElevationBit('{userdesktop}\Pool (Run as Admin).lnk')
 [Code]
 
 procedure SetElevationBit(Filename: string);
