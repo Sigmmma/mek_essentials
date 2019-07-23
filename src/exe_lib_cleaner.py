@@ -49,4 +49,4 @@ try:
                           os.path.join(root, new_filename))
 except Exception:
     print(format_exc())
-input("Finished")
+print("Finished")
