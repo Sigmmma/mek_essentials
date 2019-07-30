@@ -18,7 +18,8 @@ try:
             if folder.lower() in (
                     ".hg", ".vs", "styles", "docs", "test_files", "x64",
                     "arbytmap_ext", "bitmap_io_ext", "dds_defs_ext",
-                    "raw_packer_ext", "raw_unpacker_ext", "swizzler_ext"):
+                    "raw_packer_ext", "raw_unpacker_ext", "swizzler_ext",
+                    "tiler_ext"):
                 shutil.rmtree(os.path.join(root, folder))
 
         for filename in files:

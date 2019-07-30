@@ -1,2 +1,4 @@
 syntax: glob
 exe.*
+*.exe
+MEK_Prebuilt.zip
