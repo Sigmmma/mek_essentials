@@ -123,7 +123,8 @@ def copy_module_files(src, dst):
 
         for dirname in dirs:
             dirpath = os.path.realpath(os.path.join(root, dirname))
-            rel_dirpath = os.path.join(os.path.relpath(dirpath, dst), "")
+            rel_dirpath = os.path.join(os.path.normpath(
+                    os.path.join("/", os.path.relpath(dirpath, dst))), "")
             for pattern in glob_ignore:
                 if fnmatch.fnmatch(rel_dirpath, pattern):
                     shutil.rmtree(dirpath)
