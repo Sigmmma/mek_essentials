@@ -131,7 +131,7 @@ def copy_module_files(src, dst):
                     break
 
 
-def pypi_upload(root="", egg=True, wheel=True, source=False, *,
+def pypi_upload(root="", module_name="", egg=True, wheel=True, source=False, *,
                 username=None, password=None):
     if not root:
         root = os.curdir
@@ -169,7 +169,9 @@ def pypi_upload(root="", egg=True, wheel=True, source=False, *,
     egg_filepath = wheel_filepath = zip_filepath = None
     for root, _, files in os.walk(os.path.join(temp_root, "dist")):
         for filename in sorted(files):
-            if filename.lower().endswith(".egg"):
+            if not filename.lower().startswith(module_name.lower()):
+                continue
+            elif filename.lower().endswith(".egg"):
                 egg_filepath = os.path.join(root, filename)
             elif filename.lower().endswith(".whl"):
                 wheel_filepath = os.path.join(root, filename)
@@ -178,10 +180,10 @@ def pypi_upload(root="", egg=True, wheel=True, source=False, *,
 
     extra_args = ""
     if username:
-        extra_args += '-u "%s"' % username
+        extra_args += '-u "%s" ' % username
 
     if password:
-        extra_args += '-p "%s"' % password
+        extra_args += '-p "%s" ' % password
 
     if script_test:
         return
@@ -285,7 +287,7 @@ for module_name in mek_modules:
             egg = wheel = True
             source = False
 
-        pypi_upload(os.path.dirname(module.__file__),
+        pypi_upload(os.path.dirname(module.__file__), module_name,
                     egg, wheel, source, username=uname, password=pword)
     except Exception:
         input(traceback.format_exc())
