@@ -15,8 +15,8 @@ try:
         for folder in dirs:
             if os.path.join(root, "") == os.path.join(op_dir, ""):
                 break
-            if folder.lower() in (
-                    ".hg", ".vs", "styles", "docs", "test_files", "x64",
+            if folder[1:] != "." and folder.lower() in (
+                    "styles", "docs", "test_files", "x64",
                     "arbytmap_ext", "bitmap_io_ext", "dds_defs_ext",
                     "raw_packer_ext", "raw_unpacker_ext", "swizzler_ext",
                     "tiler_ext"):
@@ -26,7 +26,7 @@ try:
             if cur_dir in os.path.join(root, filename):
                 continue
 
-            if filename.lower() in ("todo.txt", ".recent.txt", ".hgignore",
+            if filename.lower() in ("todo.txt", ".recent.txt", ".gitignore",
                                     "pool_colors.txt", "pool_actions.txt",
                                     "refinery.cfg", "mozzarilla.cfg",
                                     "binilla.cfg", "hek_pool.cfg"):
