@@ -1,4 +1,10 @@
-import gitignore_parser
+try:
+    import gitignore_parser
+except ImportError:
+    print("Need to install 'gitignore_parser' library")
+    input()
+    raise SystemExit(0)
+
 import os
 import shutil
 import subprocess
