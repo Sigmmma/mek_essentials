@@ -89,16 +89,8 @@ def copy_module_files(src, dst):
         # only copy the root files
         break
 
-    glob_ignore = []
-    ignore_filepath = os.path.join(src, ".gitignore")
-    try:
-        with open(ignore_filepath, "r") as f:
-            for line in f:
-                line = line.strip(" \n")
-                if line and line[0] != "#":
-                    glob_ignore.append(line.replace("\\", "/"))
-    except Exception:
-        pass
+    ignore_matches = gitignore_parser.parse_gitignore(
+        os.path.join(src, ".gitignore"), dst)
 
     # remove compiled python files and ignored files
     for root, dirs, files in os.walk(dst):
@@ -107,19 +99,17 @@ def copy_module_files(src, dst):
             rel_filepath = os.path.relpath(filepath, dst)
             # explicitly include any .pyd accelerators
             if os.path.splitext(filename)[-1].lower() != ".pyd":
-                for pattern in glob_ignore:
-                    if fnmatch.fnmatch(rel_filepath, pattern):
-                        os.remove(filepath)
-                        break
+                if ignore_matches(filepath):
+                    print("IGNORE FILE:", filename)
+                    os.remove(filepath)
 
         for dirname in dirs:
             dirpath = os.path.realpath(os.path.join(root, dirname))
             rel_dirpath = os.path.join(os.path.normpath(
                     os.path.join("/", os.path.relpath(dirpath, dst))), "")
-            for pattern in glob_ignore:
-                if fnmatch.fnmatch(rel_dirpath, pattern):
-                    shutil.rmtree(dirpath)
-                    break
+            if ignore_matches(dirpath):
+                print("IGNORE DIR:", dirpath)
+                shutil.rmtree(dirpath)
 
 
 def pypi_upload(root="", module_name="", egg=True, wheel=True, source=False, *,
