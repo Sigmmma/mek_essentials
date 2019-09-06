@@ -199,7 +199,7 @@ if not script_test:
 
 # make the meke
 print("Building MEKE...")
-'''try:
+try:
     # run the build script
     subprocess.run(meke_build_script, cwd=os.path.dirname(meke_build_script))
     exe_path = None
@@ -215,7 +215,7 @@ except shutil.SameFileError:
     pass
 except Exception:
     input(traceback.format_exc())
-    raise'''
+    raise
 
 
 # make the prebuilt mek
