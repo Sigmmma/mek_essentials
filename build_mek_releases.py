@@ -1,4 +1,10 @@
-import fnmatch
+try:
+    import gitignore_parser
+except ImportError:
+    print("Need to install 'gitignore_parser' library")
+    input()
+    raise SystemExit(0)
+
 import os
 import shutil
 import subprocess
@@ -24,25 +30,24 @@ meke_build_script = os.path.join(meke_dir, "src", "build.bat")
 temp_root = os.path.realpath(os.path.join(tempfile.gettempdir(), "mek_build_temp_folder"))
 prebuilt_mek_dir = os.path.join(temp_root, "MEK_Prebuilt")
 
-mek_download_url = "https://bitbucket.org/Moses_of_Egypt/mek/get/default.zip"
+mek_download_url = "https://github.com/MosesofEgypt/mek/archive/master.zip"
 script_test = (
     input("Type 'y' to do an actual upload: ").strip().lower() != 'y')
 
 def unzip_zipfile(zipfile_path, dst, del_zipfile=False):
     with zipfile.ZipFile(zipfile_path) as zf:
         for zip_name in zf.namelist():
+            # ignore the root directory of the zipfile
             filepath = zip_name.split("/", 1)[-1]
-            if filepath[:1] == '.':
+            if filepath[:1] == '.' or zip_name[-1:] == "/":
                 continue
 
             try:
                 filepath = os.path.join(dst, filepath).replace("\\", "/")
-                filename = os.path.basename(filepath)
-                dirpath = os.path.dirname(filepath)
+                if os.sep == "\\":
+                    filepath = filepath.replace("/", "\\")
 
-                if not os.path.exists(dirpath):
-                    os.makedirs(dirpath)
-
+                os.makedirs(os.path.dirname(filepath), exist_ok=True)
                 with zf.open(zip_name) as zzf, open(filepath, "wb+") as f:
                     f.write(zzf.read())
             except Exception:
@@ -61,8 +66,8 @@ def copy_module_files(src, dst):
     os.makedirs(dst, exist_ok=True)
     for _, dirs, __ in os.walk(src):
         for dirname in dirs:
-            if dirname.lower() not in (
-                    ".hg", ".vs", "test_files", "x64", "__pycache__",
+            if dirname[:1] != "." and dirname.lower() not in (
+                    "test_files", "x64", "__pycache__",
                     "arbytmap_ext", "bitmap_io_ext", "dds_defs_ext",
                     "raw_packer_ext", "raw_unpacker_ext", "swizzler_ext",
                     "tiler_ext"):
@@ -81,7 +86,7 @@ def copy_module_files(src, dst):
                 continue
             elif ext in (".backup", ".sln", ".user", ".filters", ".vcxproj"):
                 continue
-            elif ext == "" and name == ".hgignore":
+            elif ext == "" and name == ".gitignore":
                 continue
 
             shutil.copy(os.path.join(src, filename),
@@ -90,24 +95,8 @@ def copy_module_files(src, dst):
         # only copy the root files
         break
 
-    glob_ignore = []
-    ignore_filepath = os.path.join(src, ".hgignore")
-    try:
-        with open(ignore_filepath, "r") as f:
-            for line in f:
-                line = line.strip(" \n")
-                if line and line[0] != "#":
-                    glob_ignore.append(line.replace("\\", "/"))
-
-        # ignore the first line
-        if glob_ignore:
-            syntax_line = tuple(
-                s.strip() for s in glob_ignore.pop(0).lower().split(" ") if s)
-            if syntax_line != ("syntax:", "glob"):
-                glob_ignore = ()
-
-    except Exception:
-        pass
+    ignore_matches = gitignore_parser.parse_gitignore(
+        os.path.join(src, ".gitignore"), dst)
 
     # remove compiled python files and ignored files
     for root, dirs, files in os.walk(dst):
@@ -116,19 +105,17 @@ def copy_module_files(src, dst):
             rel_filepath = os.path.relpath(filepath, dst)
             # explicitly include any .pyd accelerators
             if os.path.splitext(filename)[-1].lower() != ".pyd":
-                for pattern in glob_ignore:
-                    if fnmatch.fnmatch(rel_filepath, pattern):
-                        os.remove(filepath)
-                        break
+                if ignore_matches(filepath):
+                    print("IGNORE FILE:", filename)
+                    os.remove(filepath)
 
         for dirname in dirs:
             dirpath = os.path.realpath(os.path.join(root, dirname))
             rel_dirpath = os.path.join(os.path.normpath(
                     os.path.join("/", os.path.relpath(dirpath, dst))), "")
-            for pattern in glob_ignore:
-                if fnmatch.fnmatch(rel_dirpath, pattern):
-                    shutil.rmtree(dirpath)
-                    break
+            if ignore_matches(dirpath):
+                print("IGNORE DIR:", dirpath)
+                shutil.rmtree(dirpath)
 
 
 def pypi_upload(root="", module_name="", egg=True, wheel=True, source=False, *,
