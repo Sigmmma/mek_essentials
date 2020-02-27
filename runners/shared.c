@@ -1,5 +1,5 @@
-#include <windows>
-#include <stdlib.h>
+#include <windows> // MessageBox()
+#include <stdlib.h> // system()
 
 #define PYTHON_EXE "mek_python\\python.exe"
 
@@ -13,7 +13,7 @@ int main() {
             "Make sure that you are running PROGRAM_NAME from "
             "the same directory that contains mek_python.\n\n"
             "Reinstalling should fix this error.",
-            
+
             "Error Loading Python.",
             MB_OK | MB_ICONERROR
         );
