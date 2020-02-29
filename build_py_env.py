@@ -50,13 +50,13 @@ os.makedirs(SITEPACKAGES_DIR)
 
 # Install tkinter.
 with zipfile.ZipFile("includes/tkinter.zip", 'r') as file:
-    file.extractall(os.path.join(BUILD_DIR, "tkinter"))
+    file.extractall(os.path.join(EMBEDDED_PY_DIR, "tkinter"))
 # Install tcl/tk which is required by tkinter.
 with zipfile.ZipFile("includes/tcl.zip", 'r') as file:
-    file.extractall(os.path.join(BUILD_DIR, "tcl"))
+    file.extractall(os.path.join(EMBEDDED_PY_DIR, "tcl"))
 
 #create ._pth file with all the lookup directories for our embedded Python.
-with open(os.path.join(BUILD_DIR, "python38._pth"), "w") as pth_file:
+with open(os.path.join(EMBEDDED_PY_DIR, "python38._pth"), "w") as pth_file:
     pth_file.write("\n".join([
         # Locally installed:
         "Lib",
@@ -75,5 +75,5 @@ with open(os.path.join(BUILD_DIR, "python38._pth"), "w") as pth_file:
 # Install the current version of the mek libraries to the local libs folder
 # in our build directory.
 subprocess.run(
-    [os.path.join(BUILD_DIR, "python.exe"), "-m", "pip",
+    [os.path.join(EMBEDDED_PY_DIR, "python.exe"), "-m", "pip",
     "install", *MEK_LIBRARIES])
