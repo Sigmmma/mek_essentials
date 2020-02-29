@@ -21,16 +21,17 @@ if os.path.exists(BUILD_DIR):
 
 # Create the root build directory
 os.makedirs(BUILD_DIR)
+os.makedirs(EMBEDDED_PY_DIR)
 
 # Download embedded python
 embedded_python_zip, _ = request.urlretrieve(EMBEDDED_PYTHON_URL)
 
-# Extract embedded puthon into our build dir
+# Extract embedded puthon into our embedded python dir
 with zipfile.ZipFile(embedded_python_zip, 'r') as file:
-    file.extractall(BUILD_DIR)
+    file.extractall(EMBEDDED_PY_DIR)
 
 # Create a wheels directory to store pip and setuptools in.
-os.makedirs(EMBEDDED_PY_DIR)
+os.makedirs(WHEELS_DIR)
 
 # Download the wheels to the wheels directory
 subprocess.run(
