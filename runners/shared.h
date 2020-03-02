@@ -13,7 +13,7 @@
 
 #define MEK_INSTALL_PATH "mek_python\\mek"
 #define UPDATER_PATH MEK_INSTALL_PATH"\\MEK_Installer.py"
-#define ESSENTIALS_VERSION 2.0.0.0
+#define ESSENTIALS_VERSION "2.0.0.0"
 #define UPDATER_ARGS "--install-dir '"MEK_INSTALL_PATH"' \
                      --disable-uninstall-btn \
                      --essentials-version '"ESSENTIALS_VERSION"'"
