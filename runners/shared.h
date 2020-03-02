@@ -43,7 +43,7 @@ static inline int run_module() {
             PROGRAM_NAME" closed with an error. "
             "If this happened before it showed up try reinstalling or running "
             "the updater. You can also debug it using startup_crash.log.\n\n"
-            "You can also request help in the"
+            "You can also request help in the "
             "#mek-discussion channel in the CE Reclaimers Discord server.",
 
             "Error",
@@ -59,7 +59,7 @@ static inline int run_updater() {
         MessageBox(NULL,
             "Updater closed with an error. "
             "If this happened before it showed up try reinstalling.\n\n"
-            "You can also request help in the"
+            "You can also request help in the "
             "#mek-discussion channel in the CE Reclaimers Discord server.",
 
             "Error",
