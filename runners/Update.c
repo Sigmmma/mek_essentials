@@ -1,3 +1,9 @@
+#define PROGRAM_NAME MEK_Updater
+#define ARGUMENTS ""
+#define UPDATER_PATH "mek_python\\mek\\MEK_Installer.py"
+#define ESSENTIALS_VERSION 2.0.0.0
+#define UPDATER_ARGS
+
 #include <windows> // MessageBox()
 #include <stdlib.h> // system()
 
@@ -19,7 +25,7 @@ int main() {
         );
         return ERROR_PYTHON_NOT_FOUND;
     }
-    if(system("PYTHON_EXE -m PROGRAM_NAME ARGUMENTS")) {
+    if(system("PYTHON_EXE UPDATER_PATH")) {
         MessageBox(NULL,
             "PROGRAM_NAME closed with an error. "
             "If this happened before it showed try reinstalling or running "
