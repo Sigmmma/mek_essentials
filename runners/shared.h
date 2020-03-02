@@ -42,7 +42,7 @@ static inline int run_module() {
         MessageBox(NULL,
             PROGRAM_NAME" closed with an error. "
             "If this happened before it showed up try reinstalling or running "
-            "the updater. You can also debug it using startup_crash.log.\n\n "
+            "the updater. You can also debug it using startup_crash.log.\n\n"
             "You can also request help in the"
             "#mek-discussion channel in the CE Reclaimers Discord server.",
 
@@ -58,7 +58,7 @@ static inline int run_updater() {
     if(system(PYTHON_EXE" "UPDATER_PATH" "UPDATER_ARGS)) {
         MessageBox(NULL,
             "Updater closed with an error. "
-            "If this happened before it showed up try reinstalling.\n\n "
+            "If this happened before it showed up try reinstalling.\n\n"
             "You can also request help in the"
             "#mek-discussion channel in the CE Reclaimers Discord server.",
 
