@@ -1,3 +1,11 @@
+/*
+  I kind of don't want to do any of this. I'd like maybe .bat scripts because
+  we're basically writing a C program that can just be a set of shell commands.
+
+  But our users expect this at this point.
+  So we got to satisfy then with their icons and stuff.
+*/
+
 #include <windows> // MessageBox()
 #include <stdlib.h> // system()
 
