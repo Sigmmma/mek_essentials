@@ -1,4 +1,4 @@
-#define PROGRAM_NAME MEK_Updater
+#define PROGRAM_NAME "MEK_Updater"
 #define ARGUMENTS ""
 #include "shared.h"
 

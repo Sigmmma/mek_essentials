@@ -1,4 +1,4 @@
-#define PROGRAM_NAME hek_pool
+#define PROGRAM_NAME "hek_pool"
 #define ARGUMENTS ""
 #include "shared.h"
 

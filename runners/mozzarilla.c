@@ -1,4 +1,4 @@
-#define PROGRAM_NAME mozzarilla
+#define PROGRAM_NAME "mozzarilla"
 #define ARGUMENTS ""
 #include "shared.h"
 
