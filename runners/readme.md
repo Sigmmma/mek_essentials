@@ -8,9 +8,9 @@ startup.
 Ones that just use python do show the cmd window.
 
 `%*` is used to pass on the calling args to the script we're executing.
-This is to future proof for librarian and such.
+This is to future proof for librarian and the likes.
 
 We're using start so the cmd window can be released after execution.
 
-msg is Window's messagebox command. It is useful because it is fimiliar to
+msg is Window's messagebox command. It is useful because it is familiar to
 people.
