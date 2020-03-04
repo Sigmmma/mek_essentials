@@ -3,7 +3,9 @@ import sys
 import shutil
 import zipfile
 import subprocess
+import traceback
 
+from os import path
 from urllib import request
 from zipfile import ZipFile
 
