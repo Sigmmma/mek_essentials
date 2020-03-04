@@ -5,6 +5,7 @@ import zipfile
 import subprocess
 
 from urllib import request
+from zipfile import ZipFile
 
 ##### Function stolen from mek installer:
 def download_mek_to_folder(install_dir, src_url):
