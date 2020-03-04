@@ -139,3 +139,21 @@ subprocess.run(
 os.makedirs(MEK_DIR)
 
 download_mek_to_folder(MEK_DIR, MEK_URL)
+
+runners_path = os.path.join(os.getcwd(), "runners")
+icons_path = os.path.join(os.getcwd(), "icons")
+
+
+# Copy the runners into the main directory.
+runner_names = filter(lambda n : n.lower().endswith(".bat"),
+                    os.listdir(runners_path))
+
+for name in runner_names:
+    shutil.copyfile(path.join(runners_path, name), path.join(BUILD_DIR, name))
+
+# Copy the icons for the shortcuts.
+icon_names = filter(lambda n : n.lower().endswith(".ico"),
+                    os.listdir(icons_path))
+
+for name in icon_names:
+    shutil.copyfile(path.join(icons_path, name), path.join(BUILD_DIR, name))
