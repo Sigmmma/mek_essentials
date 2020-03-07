@@ -40,7 +40,7 @@ def execute_module(module_name, console_enabled):
 def execute_updater():
     module_name = "MEK_Updater"
     try:
-        return_code = subprocess.call([
+        return_code = subprocess.Popen([
             PYW_EXE, UPDATER_FILE,
             "--install-dir", "mek_python/mek",
             "--disable-uninstall-btn",
