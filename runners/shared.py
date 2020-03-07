@@ -25,9 +25,9 @@ UNKNOWN_TEMPL = (
 def execute_module(module_name, console_enabled):
     py_exe = PY_EXE if console_enabled else PYW_EXE
     try:
-        return_code = subprocess.run([
+        subprocess.Popen([
             py_exe, "-m", module_name, *sys.argv[1: ]]).returncode
-        sys.exit(return_code)
+        sys.exit(0)
     except FileNotFoundError:
         subprocess.run(["msg", os.getlogin(),
             FILE_NOT_FOUND_TEMPL % (module_name)])
@@ -40,13 +40,13 @@ def execute_module(module_name, console_enabled):
 def execute_updater():
     module_name = "MEK_Updater"
     try:
-        return_code = subprocess.Popen([
+        subprocess.Popen([
             PYW_EXE, UPDATER_FILE,
             "--install-dir", "mek_python/mek",
             "--disable-uninstall-btn",
             "--essentials-version", ESSENTIALS_VERSION,
             "--meke-dir", MEKE_FOLDER]).returncode
-        sys.exit(return_code)
+        sys.exit(0)
     except FileNotFoundError:
         subprocess.run(["msg", os.getlogin(),
             FILE_NOT_FOUND_TEMPL % (module_name)])
