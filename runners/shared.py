@@ -40,13 +40,13 @@ def execute_module(module_name, console_enabled):
 def execute_updater():
     module_name = "MEK_Updater"
     try:
-        return_code = subprocess.run([
+        # We can't be open if the MEK_Installer wants to update it.
+        os.system(" ".join([
             PYW_EXE, UPDATER_FILE,
             "--install-dir", "mek_python/mek",
             "--disable-uninstall-btn",
             "--essentials-version", ESSENTIALS_VERSION,
-            "--meke-dir", MEKE_FOLDER]).returncode
-        sys.exit(return_code)
+            "--meke-dir", MEKE_FOLDER]))
     except FileNotFoundError:
         subprocess.run(["msg", os.getlogin(),
             FILE_NOT_FOUND_TEMPL % (module_name)])
