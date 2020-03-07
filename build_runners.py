@@ -21,9 +21,9 @@ def build_exe(script_name, icon_name, uac_needed):
         cmd_args.py_exe, "-m",
         "PyInstaller", "-F",
         "--noconsole",
-        "--icon=%s" % (icon_name)]
-        + ["--uac-admin"] if uac_needed else []
-        + ["%s" % (script_name)], cwd=RUNNERS_DIR)
+        "--icon=%s" % (icon_name)] + (
+        ["--uac-admin"] if uac_needed else []
+        ) + ["%s" % (script_name)], cwd=RUNNERS_DIR)
 
 MEK_PROGRAMS = (
     ("Mozzarilla.py",  "../icons/mozzarilla.ico",   False),
