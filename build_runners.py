@@ -21,7 +21,7 @@ def build_exe(script_name, icon_name):
         "PyInstaller", "-F",
         "--noconsole",
         "--icon='%s'" % (path.join(ICONS_DIR, icon_name)),
-        "%s" % (script_name)])
+        "%s" % (script_name)], cwd=RUNNERS_DIR)
 
 MEK_PROGRAMS = (
     ("Mozzarilla.py",  "mozzarilla.ico"),
