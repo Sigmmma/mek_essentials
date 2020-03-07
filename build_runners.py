@@ -38,4 +38,4 @@ runner_names = filter(lambda n : n.lower().endswith(".exe"),
                     os.listdir(RUNNERS_DIR))
 
 for name in runner_names:
-    shutil.copyfile(path.join(runners_path, name), path.join(BUILD_DIR, name))
+    shutil.copyfile(path.join(RUNNERS_DIR, name), path.join(BUILD_DIR, name))
