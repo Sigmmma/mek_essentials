@@ -16,19 +16,20 @@ RUNNERS_DIR      = path.join(os.getcwd(), "runners")
 RUNNERS_DIST_DIR = path.join(RUNNERS_DIR, "dist")
 ICONS_DIR        = path.join(os.getcwd(), "icons")
 
-def build_exe(script_name, icon_name):
+def build_exe(script_name, icon_name, uac_needed):
     subprocess.run([
         cmd_args.py_exe, "-m",
         "PyInstaller", "-F",
         "--noconsole",
-        "--icon=%s" % (icon_name),
-        "%s" % (script_name)], cwd=RUNNERS_DIR)
+        "--icon=%s" % (icon_name)]
+        + ["--uac-admin"] if uac_needed else []
+        + ["%s" % (script_name)], cwd=RUNNERS_DIR)
 
 MEK_PROGRAMS = (
-    ("Mozzarilla.py",  "../icons/mozzarilla.ico"),
-    ("Pool.py",        "../icons/pool.ico"),
-    ("Refinery.py",    "../icons/refinery.ico"),
-    ("MEK_Updater.py", "../icons/meke.ico"),
+    ("Mozzarilla.py",  "../icons/mozzarilla.ico",   False),
+    ("Pool.py",        "../icons/pool.ico",         False),
+    ("Refinery.py",    "../icons/refinery.ico",     False),
+    ("MEK_Updater.py", "../icons/meke.ico",         True),
 )
 
 for program in MEK_PROGRAMS:
