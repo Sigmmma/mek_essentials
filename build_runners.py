@@ -20,7 +20,7 @@ def build_exe(script_name, icon_name):
         cmd_args.py_exe, "-m",
         "PyInstaller", "-F",
         "--noconsole",
-        "--icon=%r" % (path.join(ICONS_DIR, icon_name)),
+        "--icon='%s"' % (path.join(ICONS_DIR, icon_name)),
         "%s" % (script_name)])
 
 MEK_PROGRAMS = (
