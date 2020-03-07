@@ -61,7 +61,7 @@ def download_mek_to_folder(install_dir, src_url):
 
 
 EMBEDDED_PYTHON_URL = "https://www.python.org/ftp/python/3.8.2/python-3.8.2-embed-amd64.zip"
-MEK_URL             = "https://github.com/Sigmmma/mek/archive/update2.zip"
+MEK_URL             = "https://github.com/Sigmmma/mek/archive/master.zip"
 BUILD_DIR           = os.path.join(os.getcwd(), "build")
 EMBEDDED_PY_DIR     = os.path.join(BUILD_DIR, "mek_python")
 WHEELS_DIR          = os.path.join(EMBEDDED_PY_DIR, "wheels")
