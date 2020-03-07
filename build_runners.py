@@ -3,9 +3,13 @@ import sys
 import shutil
 import subprocess
 
+from argparse import ArgumentParser
+
 from os import path
 
-PY_EXE = "c:\\python36\\python.exe"
+parser = ArgumentParser(description='Build PyInstaller Exes')
+parser.add_argument('--py-exe', help='The python exe to use. USE PYTHON 3.6', required=True)
+cmd_args = parser.parse_args()
 
 RUNNERS_DIR      = path.join(os.getcwd(), "runners")
 RUNNERS_DIST_DIR = path.join(RUNNERS_DIR, "dist")
@@ -13,7 +17,7 @@ ICONS_DIR        = path.join(os.getcwd(), "icons")
 
 def build_exe(script_name, icon_name):
     subprocess.run([
-        PY_EXE, "-m",
+        cmd_args.py_exe, "-m",
         "PyInstaller", "-F",
         "--noconsole",
         "--icon=%r" % (path.join(ICONS_DIR, icon_name)),
