@@ -29,11 +29,11 @@ def execute_module(module_name, console_enabled):
             py_exe, "-m", module_name, *sys.argv[1: ]]).returncode
         sys.exit(0)
     except FileNotFoundError:
-        subprocess.run(["msg", os.getlogin(),
+        subprocess.Popen(["msg", os.getlogin(),
             FILE_NOT_FOUND_TEMPL % (module_name)])
         sys.exit(1)
     except Exception as e:
-        subprocess.run(["msg", os.getlogin(),
+        subprocess.Popen(["msg", os.getlogin(),
             UNKNOWN_TEMPL % (e, module_name, format_exc())])
         sys.exit(1)
 
@@ -48,10 +48,10 @@ def execute_updater():
             "--meke-dir", MEKE_FOLDER]).returncode
         sys.exit(0)
     except FileNotFoundError:
-        subprocess.run(["msg", os.getlogin(),
+        subprocess.Popen(["msg", os.getlogin(),
             FILE_NOT_FOUND_TEMPL % (module_name)])
         sys.exit(1)
     except Exception as e:
-        subprocess.run(["msg", os.username,
+        subprocess.Popen(["msg", os.username,
             UNKNOWN_TEMPL % (e, module_name, format_exc())])
         sys.exit(1)
