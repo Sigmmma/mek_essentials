@@ -20,14 +20,14 @@ def build_exe(script_name, icon_name):
         cmd_args.py_exe, "-m",
         "PyInstaller", "-F",
         "--noconsole",
-        "--icon='%s'" % (path.join(ICONS_DIR, icon_name)),
+        "--icon=%s" % (icon_name),
         "%s" % (script_name)], cwd=RUNNERS_DIR)
 
 MEK_PROGRAMS = (
-    ("Mozzarilla.py",  "mozzarilla.ico"),
-    ("Pool.py",        "pool.ico"),
-    ("Refinery.py",    "refinery.ico"),
-    ("MEK_Updater.py", "meke.ico"),
+    ("Mozzarilla.py",  "../icons/mozzarilla.ico"),
+    ("Pool.py",        "../icons/pool.ico"),
+    ("Refinery.py",    "../icons/refinery.ico"),
+    ("MEK_Updater.py", "../icons/meke.ico"),
 )
 
 for program in MEK_PROGRAMS:
