@@ -26,8 +26,11 @@ PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=MEKE_Installer
 SetupIconFile=icons\meke.ico
-Compression=lzma2/ultra
 SolidCompression=yes
+Compression=lzma2/ultra64
+LZMAUseSeparateProcess=yes
+LZMADictionarySize=1048576
+LZMANumFastBytes=273
 WizardStyle=modern
 
 [Languages]
