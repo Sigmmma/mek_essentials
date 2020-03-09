@@ -29,7 +29,7 @@ SetupIconFile=icons\meke.ico
 SolidCompression=yes
 Compression=lzma2/ultra64
 LZMAUseSeparateProcess=yes
-LZMADictionarySize=1048576
+;LZMADictionarySize=1048576
 LZMANumFastBytes=273
 WizardStyle=modern
 
