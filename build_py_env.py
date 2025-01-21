@@ -184,9 +184,10 @@ os.makedirs(LIB_DIR)
 # This is where our packages will be installed.
 os.makedirs(SITEPACKAGES_DIR)
 
-# For some reason, jaraco doesn't has no __init__.py in its root, making
-# setuptools unable to find it, making the wheel effectively useless.
-# Soooo we gonna install it to sitepackages and add an empty __init__.py
+# For some reason, jaraco has no __init__.py in its root, which makes
+# setuptools unable to find it. This makes wheels effectively useless
+# for installing jaraco, soooo we're gonna need to install it to the
+# sitepackages and create an empty __init__.py in its root.
 #    See - https://github.com/jaraco/jaraco.classes/issues/2
 subprocess.run(
     [sys.executable, "-m", "pip", "install", 
