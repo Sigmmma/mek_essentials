@@ -8,7 +8,7 @@ from argparse import ArgumentParser
 from os import path
 
 parser = ArgumentParser(description='Build PyInstaller Exes')
-parser.add_argument('--py-exe', help='The python exe to use. USE PYTHON 3.6', required=True)
+parser.add_argument('--py-exe', help='The python exe to use. USE PYTHON 3.12', required=True)
 cmd_args = parser.parse_args()
 
 BUILD_DIR        = path.join(os.getcwd(), "build")

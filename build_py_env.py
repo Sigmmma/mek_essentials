@@ -56,7 +56,9 @@ package_branch_names = {
     }
 
 INSTALL_FROM_SOURCE = cmd_args.use_source_urls
-MEK_URL             = "https://github.com/Sigmmma/mek/archive/%s.zip" % package_branch_names.get("mek", "master")
+MEK_URL             = "https://github.com/Sigmmma/mek/archive/%s.zip" % (
+    package_branch_names.get("mek", "master") or "master"
+    )
 BUILD_DIR           = os.path.join(os.getcwd(), "build")
 EMBEDDED_PY_DIR     = os.path.join(BUILD_DIR, "mek_python")
 INCLUDE_DIR         = os.path.join(EMBEDDED_PY_DIR, "Include")
