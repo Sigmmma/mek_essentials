@@ -172,8 +172,10 @@ os.makedirs(WHEELS_DIR)
 
 # Download the wheels to the wheels directory
 subprocess.run(
-    [sys.executable, "-m", "pip",
-    "download", "setuptools", "pip", "--no-cache-dir",
+    [sys.executable, "-m", "pip", "download",
+    # NOTE: something in v75.9.0 of setuptools is breaking the
+    #       build, so we're locking to the latest working one.
+    "setuptools==v75.8.2", "pip", "--no-cache-dir",
     ],
     cwd=WHEELS_DIR)
 
