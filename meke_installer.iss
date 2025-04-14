@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Mozz Editing Kit Essentials"
-#define MyAppVersion "2.0.0"
+#define MyAppVersion "2.1.4"
 #define MyAppPublisher "Sigmmma"
 #define MyAppURL "https://github.com/Sigmmma"
 
